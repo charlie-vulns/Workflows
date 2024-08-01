@@ -8,9 +8,11 @@ jobs:
   display-variables:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ secrets.api_key }}"
-      - run: echo "env_var"
-
+      - run: |
+          echo "secret.api_key = " + ${{ secrets.api_key }}
+          echo "env_var = " + env_var
+          echo "vars.api-key = " + ${{ vars.api_key }}
+ 
 # jobs:
 #   display-variables:
 #     name: ${{ vars.JOB_NAME }}
