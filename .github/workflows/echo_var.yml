@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "secret.api_key = " + ${{ secrets.api_key }}
-          echo "env_var = " + env_var
-          echo "vars.api-key = " + ${{ vars.api_key }}
+          echo "secret.api_key = ${{ secrets.api_key }}"
+          echo "env_var = ${{ env_var }}"
+          echo "vars.api-key = ${{ vars.api_key }}"
  
 # jobs:
 #   display-variables:
