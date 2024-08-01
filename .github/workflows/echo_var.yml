@@ -12,6 +12,8 @@ jobs:
           echo "secret.api_key = ${{ secrets.api_key }}"
           echo "env_var = ${{ env.env_var }}"
           echo "vars.api-key = ${{ vars.api_key }}"
+          echo "github repository is ${{ github.repository }}"
+          echo "repo owner is ${{ github.repository_owner }} "
  
 # jobs:
 #   display-variables:
