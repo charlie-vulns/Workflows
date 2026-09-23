@@ -1,4 +1,4 @@
-name: Component detection dependency submission
+name: Component detection dependency submission (tmp)
 
 on:
   workflow_call:
