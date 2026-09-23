@@ -1,0 +1,63 @@
+name: Component detection dependency submission (tmp)
+
+on:
+  workflow_call:
+    inputs:
+      filePath:
+        description: Directory containing dependency manifests to scan.
+        required: false
+        type: string
+        default: .
+      directoryExclusionList:
+        description: Comma-separated minimatch patterns to exclude.
+        required: false
+        type: string
+        default: ''
+      detectorArgs:
+        description: Component Detection detector arguments.
+        required: false
+        type: string
+        default: ''
+      detectorsFilter:
+        description: Comma-separated detector identifiers to run.
+        required: false
+        type: string
+        default: ''
+      detectorsCategories:
+        description: Comma-separated detector categories to run.
+        required: false
+        type: string
+        default: ''
+      dockerImagesToScan:
+        description: Comma-separated Docker images to scan.
+        required: false
+        type: string
+        default: ''
+      correlator:
+        description: Identifier used to distinguish this dependency snapshot.
+        required: false
+        type: string
+        default: component-detection
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  dependency-submission:
+    name: Submit dependency snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run component detection
+        uses: advanced-security/component-detection-dependency-submission-action@felickz-fix-npm-snapshot-manifests
+        with:
+          filePath: ${{ inputs.filePath }}
+          directoryExclusionList: ${{ inputs.directoryExclusionList }}
+          detectorArgs: ${{ inputs.detectorArgs }}
+          detectorsFilter: ${{ inputs.detectorsFilter }}
+          detectorsCategories: ${{ inputs.detectorsCategories }}
+          dockerImagesToScan: ${{ inputs.dockerImagesToScan }}
+          correlator: ${{ inputs.correlator }}
